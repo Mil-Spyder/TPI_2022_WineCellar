@@ -7,7 +7,7 @@
 
         @foreach ($bottles as $bottle)
             <div
-                class="border border-red-400  lg:border lg:border lg:border-red-400 bg-gray-100 rounded-b lg:rounded-b lg:rounded-r mb-2 p-4 flex flex-col justify-between leading-normal">
+                class="border border-red-400  lg:border  lg:border-red-400 bg-gray-100 rounded-b lg:rounded-b lg:rounded-r mb-2 p-4 flex flex-col justify-between leading-normal">
                 <div class="mb-8">
                     <p class="text-sm text-gray-600 flex items-center">
                         <svg class="fill-current text-gray-500 w-3 h-3 mr-2" xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +77,7 @@
                 </div>
                 <div class="flex flex-row items-center">
 
-                    <div class="text-sm pr-4 text-xl ">
+                    <div class="text-sm pr-4  ">
                         <p class="text-gray-900 font-semibold leading-none py-2">unité</p>
                         <p class="text-gray-600">
                             @isset($bottle)
