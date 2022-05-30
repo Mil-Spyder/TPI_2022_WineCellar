@@ -10,6 +10,13 @@
             @endforeach
         </div>
     @endif
+
+    @if ($message = Session::get('status'))
+        <div class=" py-2 bg-auto bg-green-200">
+            <p class="text-center">{{ $message }}</p>
+        </div>
+    
+    @endif
     <div class="w-full flex items-center justify-center pt-4">
         <div class="bg-gray-100 rounded-lg shadow-lg flex-col w-5/6 sm:max-w-2xl px-6 border border-red-300">
             <div class="px-5 py-3 mb-3 text-4xl font-medium text-gray-800 mt-6">
@@ -22,8 +29,7 @@
                 <div class="flex ">
                     <ul class="font-extralight text-gray-500 text-xl py-2 text-justify">
 
-                        
-
+                       
                         <li>{{ $bottle->color }}</li>
                         <li>{{ $bottle->vintage }}</li>
                         <li>{{ $bottle->region }}</li>
@@ -31,16 +37,12 @@
                         <li>{{ $bottle->Peak_date }}</li>
                         <li>{{ $bottle->danger_date }}</li>
                         <li>{{ $bottle->culture->label }}</li>
-                        @if ($bottle->wineaker_id == 0)
-                            
-                        @else
-                        <li>{{$bottle->winemaker->domain_name}} </li>
-                        @endif
+                        
 
                         <!-- TO DO warning relationship problem-->
-                        <li>{{$bottle->grape_variety}}</li>
+                        <li>{{$bottle->grape_variety }}</li>
                     </ul>
-                   
+
 
                 </div>
             </div>
@@ -65,7 +67,7 @@
 
                 <div class="py-2 px-8"> <button type="button"
                         class="text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><a
-                            href="{{route('PDF', ['id' => $bottle->id])}}">télécharger le pdf</a>
+                            href="{{ route('PDF', ['id' => $bottle->id]) }}">télécharger le pdf</a>
                     </button>
                 </div>
             </div>
@@ -99,45 +101,48 @@
 
 
                                 <div class="flex items-center ">
-                                    <form action="{{route('rate')}}"  method="POST">
+                                  
+                                    <form action="{{ route('rate') }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="bottle_id" value="{{ $bottle->id }}">
-                                        <button type="submit" name="rating" id="rating1" value="1" ><svg
-                                                class="w-5 h-5 text-orange-300 hover:text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
-                                                xmlns="http://www.w3.org/2000/svg">
+                                        <button type="submit" name="rating" id="rating1" value="1"><svg
+                                                class="w-5 h-5 text-orange-300 hover:text-yellow-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                 <path
                                                     d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
                                                 </path>
                                             </svg></button>
-                                            <button type="submit" name="rating" id="rating1" value="2"><svg
-                                                class="w-5 h-5 text-orange-300 hover:text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
-                                                xmlns="http://www.w3.org/2000/svg">
+                                        <button type="submit" name="rating" id="rating1" value="2"><svg
+                                                class="w-5 h-5 text-orange-300 hover:text-yellow-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                 <path
                                                     d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
                                                 </path>
                                             </svg></button>
-                                            <button type="submit" name="rating" id="rating1" value="3"><svg
-                                                class="w-5 h-5 text-orange-300 hover:text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
-                                                xmlns="http://www.w3.org/2000/svg">
+                                        <button type="submit" name="rating" id="rating1" value="3"><svg
+                                                class="w-5 h-5 text-orange-300 hover:text-yellow-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                 <path
                                                     d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
                                                 </path>
                                             </svg></button>
-                                            <button type="submit" name="rating" id="rating1" value="4"><svg
-                                                class="w-5 h-5 text-orange-300 hover:text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
-                                                xmlns="http://www.w3.org/2000/svg">
+                                        <button type="submit" name="rating" id="rating1" value="4"><svg
+                                                class="w-5 h-5 text-orange-300 hover:text-yellow-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                 <path
                                                     d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
                                                 </path>
                                             </svg></button>
-                                            <button type="submit" name="rating" id="rating1" value="5"><svg
-                                                class="w-5 h-5 text-orange-300 hover:text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
-                                                xmlns="http://www.w3.org/2000/svg">
+                                        <button type="submit" name="rating" id="rating1" value="5"><svg
+                                                class="w-5 h-5 text-orange-300 hover:text-yellow-300" fill="currentColor"
+                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                 <path
                                                     d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
                                                 </path>
                                             </svg></button>
                                     </form>
+                                    
+                                   
                                 </div>
 
                             </div>

@@ -107,8 +107,9 @@ class BottleController extends Controller
     {
         //
         $bottles = Bottle::findOrFail($id);
+        
         $grape_varieties = GrapeVariety::all();
-        return view('bottles.show')->with('bottle', $bottles)->with('grape_variety',$grape_varieties);
+        return view('bottles.show')->with('bottle', $bottles)->with('grape_variety',$grape_varieties) ;
     }
 
     /**
@@ -170,11 +171,11 @@ class BottleController extends Controller
 
         if ($result) {
 
-            $message=session()->flash('success',"la bouteille a été modifiée avec succès");
+            return Redirect::to("/")->withSuccess("la bouteille a été modifié");
 
-            return Redirect::to("/")->with('message');
+            
         } else {
-            return Redirect::to("/")->with('fail',"la bouteille n'a pas été modifiée");
+            return Redirect::to("/")->withFail("la bouteille n'a pas été modifiée");
         }
     }
 

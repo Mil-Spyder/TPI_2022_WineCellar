@@ -21,6 +21,7 @@ use App\Http\Controllers\RatingController;
 TO-DO WARNING rajouter les {id} au URI nécessaires.
 */
 Route::get('/bar',[MailController::class,'bar']);
+
 Route::middleware(['auth'])->group(function(){
 
 Route::get('',[BottleController::class,'index'])->name('home');
@@ -34,6 +35,7 @@ Route::get('/exportPDF/{id}',[BottleController::class,'createPDF'])->name('PDF')
 
 Route::post('/comment/created',[CommentController::class,'create'])->name('add');
 Route::post('/userrating/', [RatingController::class,'create'])->name('rate');
+Route::post('userrating/edit/{id}',[RatingController::class,'edit'])->name('updateRate');
 });
 
 

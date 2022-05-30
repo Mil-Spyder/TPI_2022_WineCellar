@@ -24,7 +24,7 @@ class RatingController extends Controller
         ]);
 
         if ($result) {
-            return redirect::to(url()->previous())->with('status', 'rating added');
+            return redirect::to("/")->with('status', 'note ajouté');
         }
     }
 
@@ -38,7 +38,7 @@ class RatingController extends Controller
             ]);
 
             if ($query) {
-                return redirect::to(url()->previous())->with('status', 'rating updated');
+                return redirect::to(url()->previous())->with('status', 'notation modifié');
             }
         }
     }

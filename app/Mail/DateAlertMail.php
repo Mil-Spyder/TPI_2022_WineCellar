@@ -29,7 +29,7 @@ class DateAlertMail extends Mailable
     public function build()
     {
         return $this->from('caveavin01@test.com')
-        ->subject('mon objet pff')
-        ->view('emails.peak');
+        ->subject('Date alerte')
+        ->view('emails.consumable');
     }
 }

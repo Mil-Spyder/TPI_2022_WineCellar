@@ -25,12 +25,8 @@ class CommentController extends Controller
         ]);
 
         if($result){
-            return redirect::to(url()->previous())->with('status','comments added');
+            return redirect::to("/")->with('status','commentaire ajouté');
         }
     }
-    public function show($id)
-    {
-        Comment::findorFail($id);
-        return view('');
-    }
+   
 }
