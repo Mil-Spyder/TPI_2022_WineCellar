@@ -31,10 +31,14 @@
                         <li>{{ $bottle->Peak_date }}</li>
                         <li>{{ $bottle->danger_date }}</li>
                         <li>{{ $bottle->culture->label }}</li>
-                        
+                        @if ($bottle->wineaker_id == 0)
+                            
+                        @else
+                        <li>{{$bottle->winemaker->domain_name}} </li>
+                        @endif
+
                         <!-- TO DO warning relationship problem-->
-                        <li>{{$bottle->grape_variety_id}}</li>
-                        <li>{{$bottle->winemaker_id}} </li>
+                        <li>{{$bottle->grape_variety}}</li>
                     </ul>
                    
 

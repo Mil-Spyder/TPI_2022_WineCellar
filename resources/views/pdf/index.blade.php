@@ -12,7 +12,8 @@
     <li>{{$data->danger_date}}</li>
     <li>{{$data->culture->label}}</li>
     <li>{{$data->color}}</li>
+    <li>{{$data->description}}</li>
 
     <li>{{$data->grape_variety}}</li>
-    <li>{{$data->winemaker_id}}</li>
+    <li>{{$data->winemaker->domain_name}}</li>
 </ul>

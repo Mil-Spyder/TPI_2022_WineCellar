@@ -10,7 +10,8 @@ class GrapeVariety extends Model
 {
     
     protected $fillable = [
-        'label', 
+        'label',
+        'bottle_id' 
     ];
 
     public function bottle(): BelongsTo

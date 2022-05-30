@@ -24,10 +24,10 @@
                             <div class="flex items-center py-4">
                                 <p class="font-medium text-gray-500">{{ $bottle->description }}</p>
                             </div>
-                            <div class="border-2 border-red-300 px-2 py-2 ">
+                           
+                            <div>
                                 
                                 @foreach ($bottle->comments as $comment)
-                                
                                 <div class="flex items-center border-b border-red-300">
                                     <svg class="w-5 h-5 text-orange-300" fill="currentColor" viewBox="0 0 20 20"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -63,7 +63,7 @@
                             
                                  @if ($bottle->id==$comment->bottle_id)
                                  <p class="font-thin text-gray-500">{{$comment->label}} </p>
-                                 <p class="font-thin text-gray-500"> | Posté le {{$comment->created_at}} par {{$comment->user->username}}</p><br>
+                                 <p class="font-thin text-gray-500"> | Posté le {{$comment->created_at->format('d-m-Y')}} par {{$comment->user->username}}</p><br>
                                  
                                      
                                  @endif

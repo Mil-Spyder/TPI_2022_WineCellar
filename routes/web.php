@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BottleController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\RatingController;
 
 /*
@@ -19,6 +20,7 @@ use App\Http\Controllers\RatingController;
 /*
 TO-DO WARNING rajouter les {id} au URI nécessaires.
 */
+Route::get('/bar',[MailController::class,'bar']);
 Route::middleware(['auth'])->group(function(){
 
 Route::get('',[BottleController::class,'index'])->name('home');

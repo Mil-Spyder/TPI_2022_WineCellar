@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Bottle;
 use App\Models\Comment;
 use App\Models\GrapeVariety;
+use App\Models\Rating;
 use App\Notifications\DateAlertNotification;
 use Facade\FlareClient\View;
 use Illuminate\Http\Request;
@@ -24,8 +25,9 @@ class BottleController extends Controller
     {
         //
         $comments =Comment::all();
+        $ratings = Rating::all();
         $bottles = Bottle::all();
-        return view('bottles.index', compact('bottles','comments'));
+        return view('bottles.index', compact('bottles','comments','ratings'));
     }
 
     /**

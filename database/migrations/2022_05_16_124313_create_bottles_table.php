@@ -22,9 +22,9 @@ class CreateBottlesTable extends Migration
             $table->integer('capacity',false);
             $table->string('color', 50);
             $table->integer('unit',false);
-            $table->integer('consumable_date',false);
-            $table->integer('peak_date',false);
-            $table->integer('danger_date',false);
+            $table->year('consumable_date');
+            $table->year('peak_date');
+            $table->year('danger_date');
             $table->longText('description');
             $table->unsignedBigInteger('culture_id')->nullable();
             $table->foreign('culture_id')->references('id')->on('cultures')->onDelete('cascade');
