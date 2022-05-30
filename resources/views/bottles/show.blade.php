@@ -33,14 +33,19 @@
                         <li>{{ $bottle->color }}</li>
                         <li>{{ $bottle->vintage }}</li>
                         <li>{{ $bottle->region }}</li>
-                        <li>{{ $bottle->consumable__date }}</li>
-                        <li>{{ $bottle->Peak_date }}</li>
+                        <li>{{ $bottle->consumable_date }}</li>
+                        <li>{{ $bottle->peak_date }}</li>
                         <li>{{ $bottle->danger_date }}</li>
                         <li>{{ $bottle->culture->label }}</li>
-                        
+                        @if ($bottle->winemaker_id==0)
+                        @else
+                        <li>{{$bottle->winemaker->domain_name }}</li>
+
+                        @endif
 
                         <!-- TO DO warning relationship problem-->
-                        <li>{{$bottle->grape_variety }}</li>
+                        {{dd($bottle->grape_variety_id)}}
+                        <li>{{$bottle->grape_variety_id }}</li>
                     </ul>
 
 
