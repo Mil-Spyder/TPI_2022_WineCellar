@@ -22,6 +22,7 @@ TO-DO WARNING rajouter les {id} au URI nécessaires.
 */
 Route::get('/bar',[MailController::class,'bar']);
 
+
 Route::middleware(['auth'])->group(function(){
 
 Route::get('',[BottleController::class,'index'])->name('home');

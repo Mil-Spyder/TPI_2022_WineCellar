@@ -17,7 +17,7 @@
         </div>
     
     @endif
-    <div class="w-full flex items-center justify-center pt-4">
+    <div class="w-full flex items-center justify-center pt-4 py-4">
         <div class="bg-gray-100 rounded-lg shadow-lg flex-col w-5/6 sm:max-w-2xl px-6 border border-red-300">
             <div class="px-5 py-3 mb-3 text-4xl font-medium text-gray-800 mt-6">
                 <div class="">{{ $bottle->appelation }} <br>{{ $bottle->cuvee_name }}</div>
@@ -26,29 +26,49 @@
             <div class="flex flex-col ml-4 py-4">
                 <h2 for="presentation" class=" text-justify text-gray-700 font-medium mb-2 underline text-2xl">Présentation
                 </h2>
-                <div class="flex ">
-                    <ul class="font-extralight text-gray-500 text-xl py-2 text-justify">
-
-                       
-                        <li>{{ $bottle->color }}</li>
-                        <li>{{ $bottle->vintage }}</li>
-                        <li>{{ $bottle->region }}</li>
-                        <li>{{ $bottle->consumable_date }}</li>
-                        <li>{{ $bottle->peak_date }}</li>
-                        <li>{{ $bottle->danger_date }}</li>
-                        <li>{{ $bottle->culture->label }}</li>
+                    <div class=" grid grid-cols-3 gap-2">
+                        <div>
+                            <p class="font-bold text-gray-800 ">Couleur</p>
+                            <p class="font-light text-gray-500">{{ $bottle->color }}</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-800 ">Millésime</p>
+                            <p class="font-light text-gray-500">{{ $bottle->vintage }}</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-800 ">Region</p>
+                            <p class="font-light text-gray-500">{{ $bottle->region }}</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-800 ">Culture</p>
+                            <p class="font-light text-gray-500">{{ $bottle->culture->label }}</p>
+                        </div>
                         @if ($bottle->winemaker_id==0)
                         @else
-                        <li>{{$bottle->winemaker->domain_name }}</li>
-
+                        <div>
+                            <p class="font-bold text-gray-800 ">Nom du domaine</p>
+                            <p class="font-light text-gray-500">{{$bottle->winemaker->domain_name }}</p>
+                        </div>
                         @endif
-
-                        <!-- TO DO warning relationship problem-->
-                        <li>{{$bottle->grape_variety_id }}</li>
-                    </ul>
-
-
-                </div>
+                        <div>
+                            <p class="font-bold text-gray-800 ">Cépage</p>
+                            <p class="font-light text-gray-500">{{$bottle->grape_variety_id }}</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-800 ">Date consommable</p>
+                            <p class="font-light text-gray-500">{{ $bottle->consumable_date }}</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-800 ">Date apogée</p>
+                            <p class="font-light text-gray-500">{{ $bottle->peak_date }}</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-800 ">Date danger</p>
+                            <p class="font-light text-gray-500">{{ $bottle->danger_date }}</p>
+                        </div>
+                    </div>
+                    <!--TO DO warning relationship problem-->
+        
             </div>
             <div class="flex mt-7 items-center text-center">
                 <hr class="border-gray-300 border-1 w-full rounded-md">
@@ -65,12 +85,12 @@
             </div>
             <div
                 class="flex flex-col sm:flex-row justify-center sm:justify-between space-y-4 sm:space-x-0 items-center my-6">
-                <div class="inline-flex items-center text-indigo-700 font-medium cursor-pointer hover:text-indigo-500">
+                <div>
 
                 </div>
 
                 <div class="py-2 px-8"> <button type="button"
-                        class="text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><a
+                        class="text-white bg-gradient-to-br from-red-800 to-red-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><a
                             href="{{ route('PDF', ['id' => $bottle->id]) }}">télécharger le pdf</a>
                     </button>
                 </div>
@@ -95,7 +115,7 @@
                                     placeholder="laisser votre commentaire..."></textarea>
                             </div>
                             <button
-                                class="px-3 py-2 text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl rounded "
+                                class="px-3 py-2 text-white bg-gradient-to-br from-red-800 to-red-400 hover:bg-gradient-to-bl rounded "
                                 type="submit">
                                 Comment </button>
                         </form>
@@ -155,4 +175,5 @@
                 </div>
             </div>
         </div>
+    </div>
     @endsection

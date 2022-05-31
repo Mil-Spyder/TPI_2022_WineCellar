@@ -1,10 +1,11 @@
 @component('mail::message')
-# Introduction
+# Attention !!!
 
-Oh no danger
+{{$data->appelation}} de {{$data->winemaker->domain_name}} approche la date limite.
+
 
 @component('mail::button', ['url' => $url,'color'=>'error'])
-Button Text
+Cliquer ici
 @endcomponent
 
 Thanks,<br>

@@ -210,8 +210,5 @@ class BottleController extends Controller
         return $pdf->download('détails'.$id.'.pdf' );
       }
 
-    public function Alert()
-    {
-        
-    }
+
 }

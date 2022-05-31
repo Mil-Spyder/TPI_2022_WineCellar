@@ -1,10 +1,11 @@
 @component('mail::message')
-# Introduction
+# Super Bonne Nouvelle !
 
-let's go apogée
+{{$data->appelation}} de {{$data->winemaker->domain_name}} a atteint l'apogée.
+
 
 @component('mail::button', ['url' => $url,'color'=>'success'])
-Button Text
+Cliquer ici
 @endcomponent
 
 Thanks,<br>

@@ -22,20 +22,16 @@
     @endif
         @foreach ($bottles as $bottle)
             <div
-                class="border border-red-400  lg:border  lg:border-red-400 bg-gray-100 rounded-b lg:rounded-b lg:rounded-r mb-2 p-4 flex flex-col justify-between leading-normal">
+                class="border border-red-800  lg:border  lg:border-red-800 bg-gray-100 rounded-b lg:rounded-b lg:rounded-r mb-2 p-4 flex flex-col justify-between leading-normal">
                 <div class="mb-8">
-                    <p class="text-sm text-gray-600 flex items-center">
-                        <svg class="fill-current text-gray-500 w-3 h-3 mr-2" xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 20 20">
-                            <path
-                                d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z" />
-                        </svg>
+                    <p class="text-sm font-semibold text-gray-600 flex items-center">
+                        
                         {{ $bottle->color }} {{ $bottle->grape_variety }}
                         <!--TO DO WARNING récupérer le libellé de cépage -->
                     </p>
                     <div class="flex flex-items-row ">
                         <div class="text-gray-900 font-bold text-xl mb-2">{{ $bottle->appelation }}
-                            <p class="text-gray-700 font-light text-base">{{ $bottle->cuvee_name }}
+                            <p class="text-gray-700 font-semibold text-base">{{ $bottle->cuvee_name }}
                             <div class="flex items-center py-4">
                                 <p class="font-medium text-gray-500">{{ $bottle->description }}</p>
                             </div>
@@ -46,7 +42,7 @@
                                     @foreach ($bottle->ratings as $rating)
                                     
                                         @if ($rating->label == 1)
-                                            <div class="flex items-center border-b border-red-300">
+                                            <div class="flex items-center border-b border-red-800">
                                                 <svg class="w-5 h-5 text-orange-300" fill="currentColor" viewBox="0 0 20 20"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -79,7 +75,7 @@
                                                 </svg>
                                             </div>
                                         @elseif ($rating->label == 2)
-                                            <div class="flex items-center border-b border-red-300">
+                                            <div class="flex items-center border-b border-red-800">
                                                 <svg class="w-5 h-5 text-orange-300" fill="currentColor" viewBox="0 0 20 20"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -113,7 +109,7 @@
                                             </div>
                                             @endif
                                         @if ($rating->label == 3)
-                                            <div class="flex items-center border-b border-red-300">
+                                            <div class="flex items-center border-b border-red-800">
                                                 <svg class="w-5 h-5 text-orange-300" fill="currentColor" viewBox="0 0 20 20"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -146,7 +142,7 @@
                                                 </svg>
                                             </div>
                                         @elseif ($rating->label == 4)
-                                            <div class="flex items-center border-b border-red-300">
+                                            <div class="flex items-center border-b border-red-800">
                                                 <svg class="w-5 h-5 text-orange-300" fill="currentColor" viewBox="0 0 20 20"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -180,7 +176,7 @@
                                             </div>
                                             @endif
                                         @if ($rating->label == 5)
-                                            <div class="flex items-center border-b border-red-300">
+                                            <div class="flex items-center border-b border-red-800">
                                                 <svg class="w-5 h-5 text-orange-300" fill="currentColor" viewBox="0 0 20 20"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -231,13 +227,13 @@
                 <div class="flex flex-row items-center">
 
                     <div class="text-sm pr-4  ">
-                        <p class="text-gray-900 font-semibold leading-none py-2">unité</p>
+                        <p class="text-gray-900  text-xl font-bold leading-none py-2">Unité:</p>
                         <p class="text-gray-600">
                             @isset($bottle)
                                 @if ($bottle->unit == 0)
-                                    <div class="font-extralight text-red-400"> le stock est épuisé </div>
+                                    <div class="font-light text-red-600 text-lg"> le stock est épuisé </div>
                                 @else
-                                    {{ $bottle->unit }}
+                                <div class="font-light text-green-600 text-lg">{{ $bottle->unit }}</div>
                                 @endif
                             @endisset
                         </p>
@@ -255,7 +251,7 @@
                 <div class="flex flex-row-reverse flex-item-center">
                     <div class="pl-4">
                         <button type="button"
-                            class="text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><a
+                            class="text-white bg-gradient-to-br from-red-800 to-red-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><a
                                 href="{{ route('show', ['id' => $bottle->id]) }}"><svg xmlns="http://www.w3.org/2000/svg"
                                     class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                     <path
@@ -266,7 +262,7 @@
                                 </svg></a>
                         </button>
                         <button type="button"
-                            class="text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><a
+                            class="text-white bg-gradient-to-br from-red-800 to-red-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><a
                                 href="{{ route('edit', ['id' => $bottle->id]) }}"><svg xmlns="http://www.w3.org/2000/svg"
                                     class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                     <path
@@ -277,7 +273,7 @@
                                 </svg></a>
                         </button>
                         <button type="button"
-                            class="text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><a
+                            class="text-white bg-gradient-to-br from-red-800 to-red-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><a
                                 href="{{ route('delete', ['id' => $bottle->id]) }}"><svg
                                     xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                     fill="currentColor">
@@ -297,7 +293,7 @@
         <div class="flex flex-row-reverse">
             <div class="py-4 px-4 mb-2 ">
                 <button type="button"
-                    class="text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><a
+                    class="text-white bg-gradient-to-br from-red-800 to-red-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><a
                         href="{{ route('create') }}">Ajouter</a>
                 </button>
             </div>

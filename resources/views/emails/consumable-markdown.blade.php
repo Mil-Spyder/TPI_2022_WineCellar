@@ -1,7 +1,8 @@
 @component('mail::message')
-# Introduction
+# Bonne Nouvelle
 
- Prête à être consommé
+ {{$data->appelation}} de {{$data->winemaker->domain_name}} prête à être consommé
+
 
 @component('mail::button', ['url' => $url,'color'=>'primary'])
 Cliquer ici
@@ -10,3 +11,4 @@ Cliquer ici
 Remerciement,<br>
 {{ config('app.name') }}
 @endcomponent
+

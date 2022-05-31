@@ -6,10 +6,12 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use App\Models\Bottle;
 
 class PeakMarkdownMail extends Mailable
 {
     public $url = 'https://winecellar.test';
+    public $data = [];
     use Queueable, SerializesModels;
 
     /**
@@ -17,11 +19,10 @@ class PeakMarkdownMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Bottle $bottle)
     {
-        //
+        $this->data =$bottle;
     }
-
     /**
      * Build the message.
      *
