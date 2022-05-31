@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Mail\DateAlertMail;
+use App\Mail\DateAlertMarkdownMail;
+use App\Mail\DangerMarkdownMail;
+use App\Mail\ConsumableMarkdownMail;
+use App\Mail\PeakMarkdownMail;
 use App\Models\Bottle;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -16,7 +20,7 @@ class MailController extends Controller
     {
         $bottles = Bottle::all();
         $users = User::all();
-        foreach ($bottles as $bottle) {
+        /*foreach ($bottles as $bottle) {
             foreach($users as $user){
                 if ($bottle->consumable_date == Carbon::now()->format('Y')) {
                     Mail::to($user->email)->send(new DateAlertMail($bottle));
@@ -28,6 +32,25 @@ class MailController extends Controller
     
                 } elseif ($bottle->danger_date == Carbon::now()->format('Y')) {
                     Mail::to($user->email)->send(new DateAlertMail($bottle));
+                    return view('emails.danger',compact('bottles'));
+                }
+            }
+
+            
+        }*/
+        foreach ($bottles as $bottle) {
+            foreach($users as $user){
+                if ($bottle->consumable_date == Carbon::now()->format('Y')) {
+                    Mail::to($user->email)->send(new ConsumableMarkdownMail($bottle));
+                    
+                    return view('emails.consumable',compact('bottles'));
+    
+                } elseif ($bottle->peak_date == Carbon::now()->format('Y')) {
+                    Mail::to($user->email)->send(new PeakMarkdownMail($bottle));
+                    return view('emails.peak',compact('bottles'));
+    
+                } elseif ($bottle->danger_date == Carbon::now()->format('Y')) {
+                    Mail::to($user->email)->send(new DangerMarkdownMail($bottle));
                     return view('emails.danger',compact('bottles'));
                 }
             }

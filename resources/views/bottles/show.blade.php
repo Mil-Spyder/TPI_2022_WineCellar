@@ -44,7 +44,6 @@
                         @endif
 
                         <!-- TO DO warning relationship problem-->
-                        {{dd($bottle->grape_variety_id)}}
                         <li>{{$bottle->grape_variety_id }}</li>
                     </ul>
 

@@ -84,8 +84,8 @@
 
                 <select name="grape_variety" class="bg-gray-50 border-gray-300" id="grape_variety">
                   
-                <option value="1">pinot noir</option>
-                <option value="2">riesling blanc</option>
+                <option value="1">Pinot noir</option>
+                <option value="2">Riesling blanc</option>
                 <option value="3">Sauvignon blanc</option>
                 <option value="4">Syrah noir</option>
                 <option value="5">Visognier blanc</option>

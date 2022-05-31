@@ -7,8 +7,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class DateAlertMail extends Mailable
+class PeakMarkdownMail extends Mailable
 {
+    public $url = 'https://winecellar.test';
     use Queueable, SerializesModels;
 
     /**
@@ -29,7 +30,6 @@ class DateAlertMail extends Mailable
     public function build()
     {
         return $this->from('caveavin01@test.com')
-        ->subject('Date alerte')
-        ->view('emails.consumable');
+            ->subject('Super bonne nouvelle')->markdown('emails.peak-markdown');
     }
 }
