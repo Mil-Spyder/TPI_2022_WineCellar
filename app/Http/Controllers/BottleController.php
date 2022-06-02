@@ -6,12 +6,19 @@ use App\Models\Bottle;
 use App\Models\Comment;
 use App\Models\GrapeVariety;
 use App\Models\Rating;
+use App\Models\User;
+
 use App\Notifications\DateAlertNotification;
+use App\Mail\DangerMarkdownMail;
+use App\Mail\ConsumableMarkdownMail;
+use App\Mail\PeakMarkdownMail;
 use Facade\FlareClient\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Redirect;
 use Symfony\Contracts\Service\Attribute\Required;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Illuminate\Support\Facades\Mail;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class BottleController extends Controller
@@ -24,10 +31,23 @@ class BottleController extends Controller
     public function index()
     {
         //
-        $comments =Comment::all();
+        $comments = Comment::all();
         $ratings = Rating::all();
         $bottles = Bottle::all();
-        return view('bottles.index', compact('bottles','comments','ratings'));
+        $users = User::all();
+
+        foreach ($bottles as $bottle) {
+            foreach ($users as $user) {
+                if ($bottle->consumable_date == Carbon::now()->format('Y')) {
+                    Mail::to($user->email)->send(new ConsumableMarkdownMail($bottle));
+                } elseif ($bottle->peak_date == Carbon::now()->format('Y')) {
+                    Mail::to($user->email)->send(new PeakMarkdownMail($bottle));
+                } elseif ($bottle->danger_date == Carbon::now()->format('Y')) {
+                    Mail::to($user->email)->send(new DangerMarkdownMail($bottle));
+                }
+            }
+        }
+        return view('bottles.index', compact('bottles', 'comments', 'ratings'));
     }
 
     /**
@@ -83,12 +103,12 @@ class BottleController extends Controller
         ]);
 
         $dates = [
-            'peak_date' =>$request->peak,
-            'consumable_date' =>$request->consumable,
-            'danger_date' =>$request->danger
+            'peak_date' => $request->peak,
+            'consumable_date' => $request->consumable,
+            'danger_date' => $request->danger
         ];
 
-        
+
 
         if ($result) {
             return Redirect::to("/")->withSuccess("la bouteille a été crée avec succés");
@@ -107,9 +127,9 @@ class BottleController extends Controller
     {
         //
         $bottles = Bottle::findOrFail($id);
-        
+
         $grape_varieties = GrapeVariety::all();
-        return view('bottles.show')->with('bottle', $bottles)->with('grape_variety',$grape_varieties) ;
+        return view('bottles.show')->with('bottle', $bottles)->with('grape_variety', $grape_varieties);
     }
 
     /**
@@ -135,7 +155,7 @@ class BottleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $request->validate([
             'appelation' => 'required',
             'cuvee_name'  => 'required',
@@ -147,7 +167,7 @@ class BottleController extends Controller
             'description' => 'required',
 
         ]);
-        
+
         $bottle = Bottle::findorFail($id);
         $result = $bottle->update([
             'id' => $bottle->id,
@@ -172,8 +192,6 @@ class BottleController extends Controller
         if ($result) {
 
             return Redirect::to("/")->withSuccess("la bouteille a été modifié");
-
-            
         } else {
             return Redirect::to("/")->withFail("la bouteille n'a pas été modifiée");
         }
@@ -199,16 +217,17 @@ class BottleController extends Controller
         }
     }
 
-    public function createPDF($id) {
+    public function createPDF($id)
+    {
 
         $data = Bottle::findorFail($id);
-        view()->share('bottle',$data);
+        view()->share('bottle', $data);
 
-        $pdf=PDF::loadView('pdf.index', [
-            'data'=>$data
+        $pdf = PDF::loadView('pdf.index', [
+            'data' => $data
         ]);
-        return $pdf->download('détails'.$id.'.pdf' );
-      }
+        return $pdf->download('détails' . $id . '.pdf');
+    }
 
-
+    
 }
