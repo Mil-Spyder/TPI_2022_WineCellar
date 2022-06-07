@@ -52,7 +52,9 @@
                         @endif
                         <div>
                             <p class="font-bold text-gray-800 ">Cépage</p>
-                            <p class="font-light text-gray-500">{{$bottle->grape_variety_id }}</p>
+                            @foreach($bottle->grapeVarieties as $grapes)
+                            <p class="font-light text-gray-500">{{$grapes->label}}</p>
+                            @endforeach
                         </div>
                         <div>
                             <p class="font-bold text-gray-800 ">Date consommable</p>
@@ -76,7 +78,7 @@
                 <hr class="border-gray-300 border-1 w-full rounded-md">
             </div>
             <div class="flex flex-col ml-4 py-4">
-                <h2 for="presentation" class="text-gray-700 font-medium mb-2 underline text-2xl">Déscriptions</h2>
+                <h2 for="presentation" class="text-gray-700 font-medium mb-2 underline text-2xl">Description</h2>
                 <div class="flex">
                     <p class="text-gray-500 py-2 text-m">
                         {{ $bottle->description }}

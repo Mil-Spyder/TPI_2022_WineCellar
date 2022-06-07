@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Culture extends Model
 {
     use HasFactory;
+    public function bottle()
+    {
+        return $this->belongsTo(Bottle::class);
+    }
 }

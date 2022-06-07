@@ -33,7 +33,7 @@ class Bottle extends Model
 
     public function grapeVarieties()
     {
-        return $this->hasMany(GrapeVariety::class);
+        return $this->belongsToMany(GrapeVariety::class, 'bottle_grape_variety','bottle_id','grape_variety_id');
     }
     public function wineMaker()
     {

@@ -11,12 +11,12 @@ class GrapeVariety extends Model
     
     protected $fillable = [
         'label',
-        'bottle_id' 
+        'id' 
     ];
 
-    public function bottle(): BelongsTo
+    public function bottles()
     {
-        return $this->belongsTo(Bottle::class,'bottle_id');
+        return $this->belongsToMany(Bottle::class,'bottle_grape_variety','bottle_id','grape_variety_id');
     }
    
     use HasFactory;

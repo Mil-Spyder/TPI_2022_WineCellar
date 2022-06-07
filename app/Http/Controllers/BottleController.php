@@ -101,13 +101,9 @@ class BottleController extends Controller
 
 
         ]);
+        $result->grapeVarieties()->sync($request->grape_variety);
 
-        $dates = [
-            'peak_date' => $request->peak,
-            'consumable_date' => $request->consumable,
-            'danger_date' => $request->danger
-        ];
-
+        
 
 
         if ($result) {
@@ -128,8 +124,7 @@ class BottleController extends Controller
         //
         $bottles = Bottle::findOrFail($id);
 
-        $grape_varieties = GrapeVariety::all();
-        return view('bottles.show')->with('bottle', $bottles)->with('grape_variety', $grape_varieties);
+        return view('bottles.show')->with('bottle', $bottles);
     }
 
     /**
